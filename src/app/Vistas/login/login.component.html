@@ -1,0 +1,22 @@
+<main class="form-signin w-100 m-auto text-center">
+  <form>
+    <img class="mb-4" src="../assets/img/icono.png" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 fw-normal">Ingrese sus datos</h1>
+
+    <div class="form-floating">
+      <input type="email" class="form-control" id="floatingInput" placeholder="ejemplo@utnfra.edu" [disabled]="estaCargando">
+      <label for="floatingInput">Correo</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" class="form-control" id="floatingPassword" placeholder="Contraseña" [disabled]="estaCargando">
+      <label for="floatingPassword">Contraseña</label>
+    </div>
+    <span *ngIf="estaCargando" class="spinner-border spinner-border-sm"></span>
+
+    <button class="w-100 btn btn-lg btn-primary" (click)="fakeLogin()" [disabled]="estaCargando">Iniciar sesión</button>
+    <button class="w-100 btn btn-lg btn-dark" (click)="fakeLogin()" [disabled]="estaCargando">Registrar cuenta</button>
+
+  </form>
+</main>
+
+<app-footer></app-footer>
