@@ -1,5 +1,5 @@
 <main class="form-signin w-100 m-auto text-center">
-  <form [formGroup]="loginForm" (ngSubmit)="loguearUsuario()">
+  <form [formGroup]="loginForm" (ngSubmit)="registrarUsuario()">
     <img class="mb-4" src="../assets/img/icono.png" alt="" width="72" height="72">
     <h1 class="h3 mb-3 fw-normal">Ingrese sus datos</h1>
 
@@ -11,12 +11,14 @@
       <input type="password" class="form-control" id="floatingPassword" placeholder="Contraseña" [disabled]="estaCargando" formControlName="contrasena">
       <label for="floatingPassword">Contraseña</label>
     </div>
+    <div class="form-floating">
+      <input type="password" class="form-control" id="floatingPasswordConfirm" placeholder="Confirme contraseña" [disabled]="estaCargando" formControlName="contrasenaConfirmada">
+      <label for="floatingPasswordConfirm">Confirme contraseña</label>
+    </div>
     <span *ngIf="estaCargando" class="spinner-border spinner-border-sm"></span>
+    <div  class="alert alert-danger" role="alert" [style.opacity]="errorRegistro.opacity">{{errorRegistro.message}}</div>
 
-    <div  class="alert alert-danger" role="alert" [style.opacity]="errorLogin.opacity">{{errorLogin.message}}</div>
-
-    <button class="w-100 btn btn-lg btn-primary"  type="submit" [disabled]="estaCargando">Iniciar sesión</button>
-    <button class="w-100 btn btn-lg btn-dark" routerLink="/registro" [disabled]="estaCargando">Registrar cuenta</button>
+    <button class="w-100 btn btn-lg btn-primary"  type="submit" [disabled]="estaCargando">Registrar nuevo usuario</button>
   </form>
-  <button class="w-100 btn btn-lg btn-warning" (click)="cargarCredencialesAdmin()">Acceso rápido: administrador</button>
+  <button class="w-100 btn btn-lg btn-warning" routerLink="/login">Ir al login</button>
 </main>

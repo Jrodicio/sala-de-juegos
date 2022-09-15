@@ -94,6 +94,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "salaDeJuegos:build:production",
+            "firebaseProject": "labo2022-2nd-q",
+            "firebaseHostingSite": "labo2022-2nd-q"
+          }
         }
       }
     }

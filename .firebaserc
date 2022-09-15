@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "labo2022-2nd-q"
+  },
+  "targets": {
+    "labo2022-2nd-q": {
+      "hosting": {
+        "salaDeJuegos": [
+          "labo2022-2nd-q"
+        ]
+      }
+    }
   }
 }
