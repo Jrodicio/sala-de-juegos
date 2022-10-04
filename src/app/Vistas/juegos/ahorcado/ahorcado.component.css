@@ -1,0 +1,113 @@
+.ahorcado {
+  width: auto;
+  height: auto;
+  background-color: blue;
+  position: absolute; /*Can also be `fixed`*/
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  /*Solves a problem in which the content is being cut when the div is smaller than its' wrapper:*/
+  width: 870px;
+  max-height: 700px;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.img-juego {
+  position: absolute;
+  margin: auto;
+  margin-top:5px;
+  width: auto;
+  height: 90%;
+  left: 0;
+  right: 0;
+}
+
+.btn-iniciar{
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.btn-finalizar{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.letras{
+  position: absolute;
+  left: 35px;
+  bottom:15px;
+}
+
+.ChargeVector{
+  position: absolute;
+  color:white;
+  font-size: 40px;
+  margin: 0;
+  bottom: 25%;
+  left: 50%;
+  text-align: center;
+
+}
+
+.spinner{
+  margin: 0;
+  position: absolute;
+  bottom: 60px;
+  left: 48%;
+}
+
+.texto-bicolor{
+  margin: 10px;
+}
+
+.mensaje-juego{
+  font-family: OptimusPrinceps;
+  font-size: 48pt;
+  text-align: center;
+  font-weight: 100;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 100%;
+  background-color: rgb(0,0,0);
+}
+
+.YouDied{
+  color: #870300;
+}
+
+.level-passed{
+  color: #01d301;
+}
+
+.btn-msj{
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 85%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.nivel-puntaje{
+  position: absolute;
+}
+
+.texto-bicolor{
+  font-size: 24px !important;
+}
+
+.iniciar-juego{
+  color:white;
+}

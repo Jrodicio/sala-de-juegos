@@ -10,15 +10,8 @@ import { Router } from '@angular/router';
 export class QuienSoyComponent implements OnInit {
 
   constructor(
-    private authService: AuthService,
     private router: Router,
-  ) {
-    authService.angularFireAuth.authState.subscribe((user) => {
-      if (!user){
-        this.router.navigate(['login']);
-      }
-    })
-  }
+  ) {}
 
   ngOnInit(): void {
   }

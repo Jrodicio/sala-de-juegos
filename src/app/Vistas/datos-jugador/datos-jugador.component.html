@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="section-title">
+    <h2>{{jugador?.email}}</h2>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-4">
+      <img [src]="jugador?.photoURL" class="img-fluid">
+    </div>
+    <div class="col-lg-8 pt-4 pt-lg-0 content">
+      <h3>{{jugador?.displayName}}</h3>
+      <div class="row">
+        <div class="col-lg-12">
+          <ul>
+            <li><i class="bi bi-rounded-right"></i> <strong>UID: </strong> {{jugador?.uid}}</li>
+            <li><i class="bi bi-rounded-right"></i> <strong>Creación del usuario:</strong> {{jugadorCreationTime()}}</li>
+            <li><i class="bi bi-rounded-right"></i> <strong>Último login: </strong> {{jugadorLastLogin()}}</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row last-row" *ngIf="!editandoPerfil">
+        <div class="col-lg-12">
+          <button class="btn btn-warning" (click)="toggleEditandoPerfil()">Modificar perfil</button>
+        </div>
+      </div>
+
+      <form [formGroup]="editForm" (ngSubmit)="actualizarPerfil()" *ngIf="editandoPerfil">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="alert alert-warning">Actualización de perfil</div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12">
+            <li><i class="bi bi-rounded-right"></i> <strong>Nombre para mostrar</strong> <input type="text" class="rounded form-control" formControlName="displayName"></li>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-10">
+            <li><i class="bi bi-rounded-right"></i> <strong>Imagen de perfil</strong> <input type="file" class="rounded form-control" formControlName="photoURL" (change)="subirImagen($event)"></li>
+          </div>
+        </div>
+
+        <div class="row last-row">
+          <div class="col-lg-2">
+          </div>
+          <div class="col-lg-4">
+            <button class="btn btn-success" type="submit">Aceptar</button>
+          </div>
+          <div class="col-lg-4">
+            <button class="btn btn-danger" (click)="cancelar()">Cancelar</button>
+          </div>
+          <div class="col-lg-2">
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

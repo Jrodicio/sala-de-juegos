@@ -4,15 +4,15 @@
     <h1 class="h3 mb-3 fw-normal">Ingrese sus datos</h1>
 
     <div class="form-floating">
-      <input type="email" class="form-control" id="floatingInput" placeholder="ejemplo@utnfra.edu" [disabled]="estaCargando" formControlName="correo">
+      <input type="email" class="form-control" id="floatingInput" placeholder="Correo" [class.is-invalid]="fm['correo'].invalid && fm['correo'].dirty" [disabled]="estaCargando" formControlName="correo">
       <label for="floatingInput">Correo</label>
     </div>
     <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="Contraseña" [disabled]="estaCargando" formControlName="contrasena">
+      <input type="password" class="form-control" id="floatingPassword" placeholder="Contraseña" [class.is-invalid]="fm['contrasena'].invalid && fm['contrasena'].dirty" [disabled]="estaCargando" formControlName="contrasena">
       <label for="floatingPassword">Contraseña</label>
     </div>
     <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPasswordConfirm" placeholder="Confirme contraseña" [disabled]="estaCargando" formControlName="contrasenaConfirmada">
+      <input type="password" class="form-control" id="floatingPasswordConfirm" placeholder="Confirme contraseña" [class.is-invalid]="fm['contrasenaConfirmada'].dirty && (fm['contrasenaConfirmada'].invalid || fm['contrasenaConfirmada'].value != fm['contrasena'].value)" [disabled]="estaCargando" formControlName="contrasenaConfirmada">
       <label for="floatingPasswordConfirm">Confirme contraseña</label>
     </div>
     <span *ngIf="estaCargando" class="spinner-border spinner-border-sm"></span>

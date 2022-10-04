@@ -1,0 +1,1 @@
+<button *ngFor="let letra of letras" type="button" class="btn btn-light btn-sm" [disabled]="!letra.activo" [innerText]="letra.letter" (click)="pulsarLetra(letra.letter)"></button>

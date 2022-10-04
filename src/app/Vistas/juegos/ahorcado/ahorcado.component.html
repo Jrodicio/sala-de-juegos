@@ -1,0 +1,30 @@
+<div class="ahorcado">
+  <div class="nivel-puntaje">
+    <span [hidden]="nivel == 0" class="texto-bicolor">Nivel <span>{{nivel}}</span></span><br>
+    <span [hidden]="nivel == 0" class="texto-bicolor">Puntaje <span>{{puntaje}}</span></span>
+  </div>
+  <img src="../../../../assets/img/ahorcado/{{cantFallas}}.png" class="img-juego">
+
+  <div class="mensaje-juego" [hidden]="juegoIniciado">
+    <div class="iniciar-juego">Ahorcado</div>
+    <button type="button" class="btn btn-outline-success btn-msj" (click)="iniciarJuego()">Iniciar juego</button>
+  </div>
+
+  <button type="button" class="btn btn-warning btn-finalizar" (click)="finalizarJuego()" *ngIf="juegoIniciado && !nivelSuperado">Finalizar juego</button>
+  <div class="spinner-border text-dark spinner" [hidden]="!mostrarSpinner" style="width: 3rem; height: 3rem;" role="status">
+    <span class="sr-only"></span>
+  </div>
+  <div class="mensaje-juego" *ngIf="cantFallas == 10">
+    <div class="YouDied">You Died</div>
+    <button type="button" class="btn btn-outline-danger btn-msj" (click)="iniciarJuego()">Reiniciar</button>
+  </div>
+  <div class="mensaje-juego" *ngIf="nivelSuperado">
+    <div class="level-passed">Nivel Superado</div>
+    <button type="button" class="btn btn-outline-success btn-msj" (click)="nuevoNivel()">Siguiente nivel</button>
+  </div>
+
+  <div class="ChargeVector">{{palabraAdivinada.join(' ')}}</div>
+  <div class="letras">
+    <app-letras (letrasEvento)="buscarLetra($event)" [letrasActivas]="juegoIniciado&&!nivelSuperado"></app-letras>
+  </div>
+</div>

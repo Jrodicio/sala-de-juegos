@@ -1,0 +1,50 @@
+<div class="preguntados">
+  <div class="nivel-puntaje">
+    <span [hidden]="nivel == 0" class="texto-bicolor">Pregunta: <span>{{nivel}}</span></span><br>
+    <span [hidden]="nivel == 0" class="texto-bicolor">Puntaje: <span>{{puntaje}}</span></span><br>
+  </div>
+
+  <div *ngIf="!juegoIniciado">
+    <img class="img-juego" src="../../../assets/img/preguntados/preguntados-main.png">
+
+    <div class="mensaje-juego">
+      <div class="iniciar-juego">Preguntados</div>
+      <button type="button" class="btn btn-success btn-msj" (click)="iniciarJuego()">Iniciar juego</button>
+    </div>
+  </div>
+
+  <div *ngIf="juegoIniciado" class="juego-iniciado">
+    <img class="img-juego not-flip-in-hor-bottom img-pregunta" [src]="preguntaImg">
+
+    <div class="pregunta-juego">{{preguntaStr}}</div>
+
+    <div class="botones">
+      <button *ngFor="let respuesta of respuestas; index as position"
+        type="button" [disabled]="botonesDeshabilitados" [class]="'btn '+respuesta.clase+' btn-lg'" (click)="Responder(position)">{{respuesta.respuesta}}</button><br>
+    </div>
+  </div>
+
+  <div class="juego-perdido" *ngIf="juegoIniciado && nivelPerdido">
+    <div class="mensaje-juego">
+      <div class="level-losed">Perdiste</div>
+      <button type="button" class="btn btn-outline-danger btn-msj" (click)="iniciarJuego()">Reiniciar</button>
+    </div>
+  </div>
+
+  <div class="mensaje-juego" *ngIf="nivelSuperado">
+    <div class="level-passed">Nivel Superado</div>
+    <button type="button" class="btn btn-outline-success btn-msj" (click)="nuevoNivel()">Siguiente nivel</button>
+  </div>
+
+  <!-- <button type="button" class="btn btn-warning btn-iniciar" (click)="iniciarJuego()" [hidden]="juegoIniciado">Iniciar juego</button>
+  <button type="button" class="btn btn-warning btn-finalizar" (click)="finalizarJuego()" [hidden]="!juegoIniciado">Finalizar juego</button> -->
+
+  <div class="spinner-border text-light spinner" [hidden]="!mostrarSpinner" style="width: 3rem; height: 3rem;" role="status">
+    <span class="sr-only"></span>
+  </div>
+
+  <!-- <div class="letras">
+    <app-letras (letrasEvento)="buscarLetra($event)" [letrasActivas]="juegoIniciado&&!nivelSuperado"></app-letras>
+  </div> -->
+
+</div>

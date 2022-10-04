@@ -12,11 +12,15 @@ import { FooterComponent } from './Vistas/footer/footer.component';
 import { HeaderComponent } from './Vistas/header/header.component';
 import { RegistroComponent } from './Vistas/registro/registro.component';
 import { environment } from '../environments/environment';
-import { AngularFireModule } from '@angular/fire/compat';
 
-import { AuthService } from './providers/auth.service';
-import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { NotFoundComponent } from './Vistas/not-found/not-found.component';
+import { DatosJugadorComponent } from './Vistas/datos-jugador/datos-jugador.component';
+
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { provideStorage,getStorage } from '@angular/fire/storage';
+import { ChatComponent } from './Vistas/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -27,17 +31,21 @@ import { NotFoundComponent } from './Vistas/not-found/not-found.component';
     FooterComponent,
     HeaderComponent,
     RegistroComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    DatosJugadorComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularFireAuthModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    provideStorage(() => getStorage()),
   ],
-  providers: [AuthService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

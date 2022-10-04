@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../providers/auth.service';
 import { Router } from '@angular/router';
+import { FirestoreService } from '../../providers/firestore.service';
 
 @Component({
   selector: 'app-registro',
@@ -17,6 +18,7 @@ export class RegistroComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     public authService: AuthService,
+    private firestoreService: FirestoreService,
     private router: Router,
   ) {
     this.loginForm = this.formBuilder.group({
@@ -35,29 +37,13 @@ export class RegistroComponent implements OnInit {
     });
 
     this.errorRegistro = {message: '', opacity: 0};
-
-    authService.angularFireAuth.authState.subscribe((user) => {
-      if (user){
-        this.router.navigate(['']);
-      }
-    })
    }
 
   ngOnInit(): void {
   }
 
-  fakeLogin(): void{
-    this.estaCargando = true;
-    setTimeout(()=>this.estaCargando = false,3000);
-  }
-
   get fm(){
     return this.loginForm.controls;
-  }
-
-  cargarCredencialesAdmin(){
-    this.fm['correo'].setValue('administrador@correo.com');
-    this.fm['contrasena'].setValue('administrador');
   }
 
   registrarUsuario(){
@@ -67,9 +53,15 @@ export class RegistroComponent implements OnInit {
       let user = {correo: this.fm['correo'].value.toString(), contrasena: this.fm['contrasena'].value.toString()};
       this.authService.createUser(user)
         .then(()=>{
-          this.authService.addLoginDB(user.correo);
-          this.authService.signinUser(user);
-        }, error => {
+          this.authService.signinUser(user)
+          .then(response => {
+            const userData = {uid:response.user.uid, photoURL: response.user.photoURL, email: response.user.email, displayName: response.user.displayName};
+            this.firestoreService.setDocument('users',userData.uid, userData);
+            this.firestoreService.addDataLogTS('logins',userData.uid);
+            this.router.navigate(['/home']);
+          })
+        })
+        .catch(error => {
           if (error.code == 'auth/email-already-in-use'){
             this.mostrarError('El correo ya se encuentra registrado.');
           }

@@ -9,26 +9,26 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  public estaLogueado: boolean = false;
+  public estaLogueado: boolean = true;
 
   constructor(
-    public authService: AuthService,
-  ) {
-
-    authService.angularFireAuth.authState.subscribe((user) => {
-      if (user){
-        this.estaLogueado = true;
-      }
-      else{
-        this.estaLogueado = false;
-      }
-    })
-
+    private authService: AuthService,
+    private router: Router){
+      this.authService.estaLogueado((user) =>{
+        if(user){
+          this.estaLogueado = true;
+        }
+        else{
+          this.estaLogueado = false;
+          this.router.navigate(['login']);
+        }
+      });
    }
   ngOnInit(): void {
   }
 
   desloguear(){
     this.authService.signoutUser();
+    this.router.navigate(['login']);
   }
 }

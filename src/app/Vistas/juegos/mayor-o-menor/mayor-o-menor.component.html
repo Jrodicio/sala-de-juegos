@@ -1,0 +1,49 @@
+<div class="mayor-o-menor">
+  <div class="nivel-puntaje">
+    <span [hidden]="nivel == 0" class="texto-bicolor">Nivel <span>{{nivel}}</span></span><br>
+    <span [hidden]="nivel == 0" class="texto-bicolor">Puntaje <span>{{puntaje}}</span></span><br>
+    <span [hidden]="nivel == 0" class="texto-bicolor">Cartas restantes <span>{{cartasRestantes}}</span></span>
+  </div>
+
+  <div *ngIf="!juegoIniciado">
+    <img class="img-juego" [src]="'../../../../assets/img/mayor-menor/mayor-menor-logo.png'">
+
+    <div class="mensaje-juego">
+      <div class="iniciar-juego">Mayor o Menor</div>
+      <button type="button" class="btn btn-outline-success btn-msj" (click)="iniciarJuego()">Iniciar juego</button>
+    </div>
+  </div>
+
+  <div *ngIf="juegoIniciado" class="juego-iniciado">
+    <img class="img-juego" [src]="'../../../../assets/img/mayor-menor/mayor-menor-inicio.png'">
+    <img class="img-juego" *ngIf="cartaAnterior != undefined" [src]="'../../../../assets/img/mayor-menor/'+cartaAnterior.palo+'-'+cartaAnterior.numeroCarta+'.png'">
+    <img class="img-juego not-flip-in-hor-bottom" *ngIf="cartaSacada != undefined" [src]="'../../../../assets/img/mayor-menor/'+cartaSacada.palo+'-'+cartaSacada.numeroCarta+'.png'">
+
+    <div class="botones">
+      <button type="button" class="btn btn-danger btn-menor btn-lg" (click)="adivinarSiguiente('menor') ; animarCartaSacada()">Menor</button>
+      <button type="button" class="btn btn-success btn-mayor btn-lg" (click)="adivinarSiguiente('mayor'); animarCartaSacada()">Mayor</button>
+    </div>
+  </div>
+
+  <div class="juego-perdido" *ngIf="juegoIniciado&&nivelPerdido">
+    <div class="mensaje-juego">
+      <div class="level-losed">Perdiste</div>
+      <button type="button" class="btn btn-outline-danger btn-msj" (click)="iniciarJuego()">Reiniciar</button>
+    </div>
+  </div>
+
+  <div class="mensaje-juego" *ngIf="nivelSuperado">
+    <div class="level-passed">Nivel Superado</div>
+    <button type="button" class="btn btn-outline-success btn-msj" (click)="nuevoNivel()">Siguiente nivel</button>
+  </div>
+
+  <div class="mensaje-carta" *ngIf="juegoIniciado">
+    <div class="texto-bicolor"><span>{{mensajeCarta}}</span></div><br>
+  </div>
+
+  <div class="spinner-border text-light spinner" [hidden]="!mostrarSpinner" style="width: 3rem; height: 3rem;" role="status">
+    <span class="sr-only"></span>
+  </div>
+
+
+</div>

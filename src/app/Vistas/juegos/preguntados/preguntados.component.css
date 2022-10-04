@@ -1,0 +1,110 @@
+.preguntados {
+  width: auto;
+  height: auto;
+  background-color: blue;
+  position: absolute; /*Can also be `fixed`*/
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  /*Solves a problem in which the content is being cut when the div is smaller than its' wrapper:*/
+  width: 870px;
+  max-height: 700px;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.img-juego {
+  position: absolute;
+  margin: auto;
+  width: auto;
+  height: 100%;
+  left: 0;
+  right: 0;
+}
+
+.img-pregunta{
+  position: absolute;
+  margin: auto;
+  max-height: 75%;
+  left: 0;
+  right: 0;
+}
+
+.nivel-puntaje{
+  position: fixed;
+}
+.texto-bicolor{
+  font-size: 20px !important;
+}
+
+.mensaje-juego{
+  font-family: OptimusPrinceps;
+  font-size: 48pt;
+  text-align: center;
+  font-weight: 100;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  color: white;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 100%;
+  background-color: rgba(0,0,0,0.9);
+}
+
+.pregunta-juego{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 28pt;
+  text-align: center;
+  font-weight: 100;
+  margin: 0;
+  color: white;
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 100%;
+  background-color: rgba(0,0,0,0.5);
+}
+
+
+.level-losed{
+  color: #870300;
+}
+
+.iniciar-juego{
+  color: whitesmoke;
+}
+
+.flip-in-hor-bottom{-webkit-animation:flip-in-hor-bottom .8s cubic-bezier(.25,.46,.45,.94) both;animation:flip-in-hor-bottom .8s cubic-bezier(.25,.46,.45,.94) both}
+@-webkit-keyframes flip-in-hor-bottom{0%{-webkit-transform:rotateX(80deg);transform:rotateX(80deg);opacity:0}100%{-webkit-transform:rotateX(0);transform:rotateX(0);opacity:1}}@keyframes flip-in-hor-bottom{0%{-webkit-transform:rotateX(80deg);transform:rotateX(80deg);opacity:0}100%{-webkit-transform:rotateX(0);transform:rotateX(0);opacity:1}}
+
+
+  .botones{
+    position: absolute;
+    top:85%;
+    width: 100%;
+  }
+  .btn{
+    width: 25%;
+  }
+  .btn-menor{
+    margin-left:24%;
+    margin-right:1%;
+  }
+  .btn-mayor{
+    margin-right:24%;
+    margin-left:1%;
+  }
+
+.mensaje-carta{
+  position: absolute;
+  top:5%;
+  width: 100%;
+  text-align: center;
+}
+

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { AuthService } from 'src/app/providers/auth.service';
 import { Router } from '@angular/router';
+import { FirestoreService } from '../../providers/firestore.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    public authService: AuthService,
+    private authService: AuthService,
+    private firestoreService: FirestoreService,
     private router: Router,
   ) {
     this.loginForm = this.formBuilder.group({
@@ -31,12 +33,6 @@ export class LoginComponent implements OnInit {
     });
 
     this.errorLogin = {message: '', opacity: 0};
-
-    authService.angularFireAuth.authState.subscribe((user) => {
-      if (user){
-        this.router.navigate(['']);
-      }
-    })
    }
 
   ngOnInit(): void {
@@ -57,8 +53,9 @@ export class LoginComponent implements OnInit {
     this.errorLogin = {message: '', opacity: 0};
     let user = {correo: this.fm['correo'].value.toString(), contrasena: this.fm['contrasena'].value.toString()};
     this.authService.signinUser(user)
-      .then(()=>{
-        this.authService.addLoginDB(user.correo);
+      .then((response)=>{
+        this.firestoreService.addDataLogTS('logins', response.user.uid);
+        this.router.navigate(['/home']);
       }).catch((error) => {
         if(error.code === 'auth/user-not-found')
         {
@@ -74,6 +71,7 @@ export class LoginComponent implements OnInit {
         }
         else
         {
+          alert(error);
           this.mostrarError('Ha ocurrido un error! Vuelva a probar en unos instantes.');
         }
       })

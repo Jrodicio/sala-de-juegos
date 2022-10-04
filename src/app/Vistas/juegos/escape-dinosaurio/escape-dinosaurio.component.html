@@ -1,0 +1,22 @@
+<div class="contenedor" (mousedown)="Saltador()">
+
+  <div class="mensaje-juego" [hidden]="juegoIniciado">
+    <div class="iniciar-juego">Escape: Dinosaurio</div>
+    <button type="button" class="btn btn-outline-success btn-msj" (click)="Start()">Iniciar juego</button>
+  </div>
+
+  <div class="mensaje-juego" *ngIf="juegoIniciado === true && gameOver === true">
+    <div class="game-over">Perdiste!<br>Puntaje: {{puntaje}}</div>
+    <button type="button" class="btn btn-outline-success btn-msj" (click)="Start()">Volver a intentar</button>
+  </div>
+
+  <div class="suelo" [style]="'left:'+sueloLeft+'px'"></div>
+
+  <div [classList]="'dino '+claseDino" [style]="'bottom:'+dinoPosY+'px'"></div>
+
+  <div class="score">{{puntaje}}</div>
+
+  <div class="obstaculos" *ngFor="let obstaculo of obstaculos">
+    <div class="cactus" [style]="'left:'+obstaculo.posX+'px'"></div>
+  </div>
+</div>

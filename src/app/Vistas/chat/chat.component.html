@@ -1,0 +1,10 @@
+<form [formGroup]="msjForm" (ngSubmit)="enviarMensaje()">
+  <div class="list-container border rounded border-dark" [scrollTop]="scrollTop">
+    <div tabindex="1" class="mensaje-item" *ngFor="let element of mensajesFrom">
+      {{element.from}}: {{element.mensaje.texto}}
+      <div class="msj-ts">{{element.mensaje.getFechaHora()}}</div>
+    </div>
+  </div>
+  <input type="text" id="floatingInput" class="cuadro-msj"  formControlName="mensaje" placeholder="Mensaje">
+  <button class="btn btn-success btn-enviar-mensaje" type="submit" [disabled]="msjForm.controls['mensaje'].invalid">></button>
+</form>

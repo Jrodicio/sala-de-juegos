@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-// import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/compat/database';
-import { Fecha } from 'src/app/Entidades/fecha';
+import { Auth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile, User, NextOrObserver } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -9,65 +7,46 @@ import { Fecha } from 'src/app/Entidades/fecha';
 
 export class AuthService {
 
-  // public loginsRef: AngularFireList<any>;
   public userData: any;
 
   constructor(
-    public angularFireAuth: AngularFireAuth,
-    // private db: AngularFireDatabase
+    private angularFireAuth: Auth,
   ) {
-    // this.loginsRef = this.db.list('/loginUsuarios');
-    this.angularFireAuth.authState.subscribe((user) => {
+    onAuthStateChanged(angularFireAuth, (user) => {
       if (user) {
+        localStorage.setItem('user', JSON.stringify(user));
         this.userData = user;
-        localStorage.setItem('user', JSON.stringify(this.userData));
-        JSON.parse(localStorage.getItem('user')!);
       } else {
-        localStorage.setItem('user', 'null');
-        JSON.parse(localStorage.getItem('user')!);
+        localStorage.removeItem('user');
+        this.userData = user;
       }
     });
   }
 
   createUser(user:{correo:string, contrasena:string}) {
-    return new Promise<any>((resolve, reject) => {
-      this.angularFireAuth.createUserWithEmailAndPassword(user.correo, user.contrasena)
-        .then(
-          res => resolve(res),
-          err => reject(err));
-    });
+    return createUserWithEmailAndPassword(this.angularFireAuth, user.correo, user.contrasena);
   }
 
   signinUser(user:{correo:string, contrasena:string}) {
-    return new Promise<any>((resolve, reject) => {
-      this.angularFireAuth.signInWithEmailAndPassword(user.correo, user.contrasena)
-        .then(
-          res => resolve(res),
-          err => reject(err));
-    });
+    return signInWithEmailAndPassword(this.angularFireAuth, user.correo, user.contrasena);
   }
 
   signoutUser() {
-    return new Promise<void>((resolve, reject) => {
-      if (this.angularFireAuth.currentUser !== null) {
-        this.angularFireAuth.signOut()
-          .then(() => {
-            resolve();
-          }).catch(() => {
-            reject();
-          });
-      }
-    });
+    return signOut(this.angularFireAuth)
   }
 
   userDetails() {
-    return this.angularFireAuth.user;
+    return this.angularFireAuth.currentUser;
   }
 
-  addLoginDB(email: string){
-    let ts = new Fecha();
-    // console.log({fecha: ts.date, usuario:email})
-    // this.loginsRef.push({fecha: ts.date, usuario:email});
+  actualizarPerfil(displayName:string, photoURL?: string){
+    return updateProfile(this.userData,{displayName, photoURL});
   }
+
+  estaLogueado(observer: NextOrObserver<User | null>){
+    return this.angularFireAuth.onAuthStateChanged(observer);
+  }
+
+
+
 }
-

@@ -1,2 +1,3 @@
 <app-header></app-header>
 <router-outlet></router-outlet>
+<app-chat class='chat' *ngIf="jugador !== null" [uidUser]="jugador.uid"></app-chat>
