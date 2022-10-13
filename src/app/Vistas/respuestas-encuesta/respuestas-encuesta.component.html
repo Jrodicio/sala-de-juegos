@@ -1,0 +1,118 @@
+<div class="container">
+  <div class="tabla-encuesta" style="max-height: 600px;">
+    <table class="table">
+      <thead>
+        <tr class="header">
+          <th scope="col"># Encuesta</th>
+          <th scope="col">Jugador</th>
+          <th scope="col">Fecha</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let element of listaEncuestas" class="rows">
+        <tr>
+          <th scope="row">{{listaEncuestas.indexOf(element)! + 1}}</th>
+          <td>{{element.jugador}}</td>
+          <td>{{getFechaFormat(element.encuesta.ts)}}</td>
+          <td><button type="button" class="btn btn-success" (click)="seleccionarEncuesta(element.encuesta.data)">Mostrar</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="encuestaMostrar !== undefined">
+    <div class="section-title">
+      <h2>Encuesta de valoración</h2>
+      <p>Resultado</p>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <ul>
+          <h5>Nombre</h5>
+          <input type="text" class="rounded form-control" [value]="encuestaMostrar.nombre" readonly>
+        </ul>
+      </div>
+      <div class="col-lg-6">
+        <ul>
+          <h5>Apellido</h5>
+          <input type="text" class="rounded form-control" [value]="encuestaMostrar.apellido" readonly>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <ul>
+          <h5>Edad</h5>
+          <input type="number" class="rounded form-control" [value]="encuestaMostrar.edad" readonly>
+        </ul>
+      </div>
+      <div class="col-lg-6">
+        <ul>
+          <h5>Teléfono</h5>
+          <input type="tel" class="rounded form-control" [value]="encuestaMostrar.telefono" readonly>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <ul>
+          <h5>Sexo</h5>
+          <input type="text" class="rounded form-control" [value]="encuestaMostrar.sexo" readonly>
+        </ul>
+      </div>
+      <div class="col-lg-6">
+        <ul>
+          <h5>País origen</h5>
+          <input type="text" class="rounded form-control" [value]="encuestaMostrar.nacionalidad" readonly>
+          </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <ul>
+          <label for="nivelDiversion" class="form-label"><h5>¿Qué tanto se divirtió con los juegos?</h5></label>
+          <input type="range" class="form-range form-control" id="nivelDiversion" [value]="encuestaMostrar.nivelDiversion" disabled>
+        </ul>
+      </div>
+      <div class="col-lg-6">
+        <ul>
+          <h5>Juegos que recomendaría</h5>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" name="Ahorcado" [checked]="encuestaMostrar.recoAhorcado" disabled>
+            <label class="form-check-label" for="Ahorcado">Ahorcado</label>
+          </div>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" name="Preguntados" [checked]="encuestaMostrar.recoPreguntados" disabled>
+            <label class="form-check-label" for="Preguntados">Preguntados</label>
+          </div>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" name="MayorMenor" [checked]="encuestaMostrar.recoMayorMenor" disabled>
+            <label class="form-check-label" for="MayorMenor">Mayor o menor</label>
+          </div>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" name="EscapeDinosaurio" [checked]="encuestaMostrar.recoEscapeDinosaurio" disabled>
+            <label class="form-check-label" for="EscapeDinosaurio">Escape: Dinosaurio</label>
+          </div>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" name="recoNinguno" [checked]="encuestaMostrar.recoNinguno" disabled>
+            <label class="form-check-label" for="recoNinguno">Ninguno</label>
+          </div>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-1"></div>
+      <div class="col-lg-10">
+        <ul>
+          <h5>Comentario</h5>
+          <textarea class="rounded form-control" rows="4" [value]="encuestaMostrar.comentario" readonly></textarea>
+        </ul>
+      </div>
+      <div class="col-lg-1"></div>
+    </div>
+  </div>
+  </div>
+  <br>

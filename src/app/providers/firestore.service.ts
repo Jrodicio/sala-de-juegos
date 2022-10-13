@@ -41,4 +41,8 @@ export class FirestoreService {
   getUsuarioByUID(uid: string){
     return this.getDocument('users', uid);
   }
+
+  esAdmin(uid: string){
+    return this.getDocument('administradores', uid).then((e)=>e) as Promise<boolean>;
+  }
 }

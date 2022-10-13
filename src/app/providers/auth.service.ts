@@ -18,7 +18,7 @@ export class AuthService {
         this.userData = user;
       } else {
         localStorage.removeItem('user');
-        this.userData = user;
+        this.userData = null;
       }
     });
   }

@@ -22,7 +22,7 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
 import { ChatComponent } from './Vistas/chat/chat.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EncuestaComponent } from './Vistas/encuesta/encuesta.component';
-import { TablaEncuestasComponent } from './vistas/encuestas/tabla-encuestas/tabla-encuestas.component';
+import { RespuestasEncuestaComponent } from './Vistas/respuestas-encuesta/respuestas-encuesta.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,7 @@ import { TablaEncuestasComponent } from './vistas/encuestas/tabla-encuestas/tabl
     DatosJugadorComponent,
     ChatComponent,
     EncuestaComponent,
-    TablaEncuestasComponent,
+    RespuestasEncuestaComponent,
   ],
   imports: [
     BrowserModule,
