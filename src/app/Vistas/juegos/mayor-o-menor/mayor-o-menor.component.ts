@@ -9,7 +9,7 @@ import { AuthService } from '../../../providers/auth.service';
 })
 export class MayorOMenorComponent implements OnInit {
 
-  public tituloPage = 'Mayor o menor';
+  public documentPuntaje: string = 'puntaje-mayorMenor';
 
   public uidUser: string | undefined;
 
@@ -152,8 +152,7 @@ export class MayorOMenorComponent implements OnInit {
   }
 
   registrarPuntaje(){
-    return this.firestore.addDataLogTS('puntaje-mayorMenor',{uidUser: this.uidUser, score: this.puntaje});
+    return this.firestore.addDataLogTS(this.documentPuntaje ,{uidUser: this.uidUser, score: this.puntaje});
   }
-
 }
 

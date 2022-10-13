@@ -38,4 +38,7 @@ export class FirestoreService {
     return getDoc(docRef);
   }
 
+  getUsuarioByUID(uid: string){
+    return this.getDocument('users', uid);
+  }
 }

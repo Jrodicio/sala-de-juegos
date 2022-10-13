@@ -30,7 +30,7 @@ export class ChatComponent implements OnInit {
     this.firestore.getDocuments('chat').subscribe(mensajes => {
       mensajes.forEach((mensaje)=>{
         const msj: Mensaje = Mensaje.fromJson(mensaje as Mensaje);
-        this.getUsuarioMensaje(msj.uid)
+        this.firestore.getUsuarioByUID(msj.uid)
         .then((user)=>{
           let fromMsj: string = 'N/A';
 
@@ -69,10 +69,6 @@ export class ChatComponent implements OnInit {
     else{
       throw new Error('Error de sistema: usuario sin UID');
     }
-  }
-
-  getUsuarioMensaje(uid: string){
-    return this.firestore.getDocument('users', uid);
   }
 
   recalcularScrollTop(){

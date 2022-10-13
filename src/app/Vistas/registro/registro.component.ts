@@ -24,7 +24,7 @@ export class RegistroComponent implements OnInit {
     this.loginForm = this.formBuilder.group({
       correo: new FormControl('', Validators.compose([
         Validators.required,
-        Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
+        Validators.email
       ])),
       contrasena: new FormControl('', Validators.compose([
         Validators.minLength(6),
@@ -72,7 +72,7 @@ export class RegistroComponent implements OnInit {
         .finally(()=>{this.estaCargando = false});
     }
     else{
-      console.log('Las contraseñas no coinciden');
+      this.mostrarError('Las contraseñas no coinciden');
     }
   }
 

@@ -7,3 +7,10 @@ html, body {
   font-family: OptimusPrinceps;
   src: url(assets/fonts/OptimusPrinceps.ttf) format("opentype");
 }
+
+.marco {
+  width: 20%;
+  height: 100%;
+  position: relative;
+  background-image: url("/assets/img/bg.jpg");
+ }

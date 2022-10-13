@@ -71,7 +71,6 @@ export class LoginComponent implements OnInit {
         }
         else
         {
-          alert(error);
           this.mostrarError('Ha ocurrido un error! Vuelva a probar en unos instantes.');
         }
       })

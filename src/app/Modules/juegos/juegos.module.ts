@@ -13,7 +13,7 @@ import { EscapeDinosaurioComponent } from '../../Vistas/juegos/escape-dinosaurio
 import { ListadoJuegosComponent } from '../../Vistas/juegos/listado-juegos/listado-juegos.component';
 
 import { PalabrasApiService } from 'src/app/providers/palabras-api.service';
-import { HttpClientModule } from '@angular/common/http';
+import { ScoreboardComponent } from '../../Vistas/juegos/scoreboard/scoreboard.component';
 
 @NgModule({
   declarations: [
@@ -23,12 +23,12 @@ import { HttpClientModule } from '@angular/common/http';
     MayorOMenorComponent,
     PreguntadosComponent,
     LetrasComponent,
-    EscapeDinosaurioComponent
+    EscapeDinosaurioComponent,
+    ScoreboardComponent,
   ],
   imports: [
     CommonModule,
     JuegosRoutingModule,
-    HttpClientModule,
   ],
   providers: [
     PalabrasApiService,

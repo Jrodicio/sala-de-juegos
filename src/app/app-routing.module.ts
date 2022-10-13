@@ -6,12 +6,14 @@ import { RegistroComponent } from './Vistas/registro/registro.component';
 import { NotFoundComponent } from './Vistas/not-found/not-found.component';
 import { QuienSoyComponent } from './Vistas/quien-soy/quien-soy.component';
 import { DatosJugadorComponent } from './Vistas/datos-jugador/datos-jugador.component';
+import { EncuestaComponent } from './Vistas/encuesta/encuesta.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch:'full'},
   { path: 'home', component: HomeComponent, children: [
-    { path: 'quien-soy', component: QuienSoyComponent },
     { path: '', component: DatosJugadorComponent },
+    { path: 'quien-soy', component: QuienSoyComponent },
+    { path: 'encuesta', component: EncuestaComponent },
     { path: 'juegos', loadChildren: () => import('./Modules/juegos/juegos.module').then(m => m.JuegosModule)},
   ] },
   { path: 'login', component: LoginComponent},

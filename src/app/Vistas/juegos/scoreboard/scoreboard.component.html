@@ -1,0 +1,23 @@
+<button class="btn btn-primary score-btn" type="button" (click)="toggleCollapse()">
+  Score
+</button>
+<div [ngClass]="clase">
+  <table class="table">
+    <thead>
+      <tr class="header">
+        <th scope="col">#</th>
+        <th scope="col">Jugador</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Puntaje</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let puntaje of listaScore" class="rows">
+      <tr>
+        <th scope="row">{{listaScore.indexOf(puntaje)! + 1}}</th>
+        <td>{{puntaje.jugadorName}}</td>
+        <td>{{getFechaFormat(puntaje.puntaje.ts)}}</td>
+        <td>{{puntaje.puntaje.data.score}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

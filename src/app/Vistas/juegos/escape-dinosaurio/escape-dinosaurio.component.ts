@@ -10,6 +10,7 @@ import { FirestoreService } from '../../../providers/firestore.service';
 export class EscapeDinosaurioComponent implements OnInit {
 
   public uidUser: string | undefined;
+  public documentPuntaje: string = 'puntaje-dinosaurio';
 
   //Tiempos animaciones y movimientos
   public time: Date = new Date();
@@ -30,13 +31,13 @@ export class EscapeDinosaurioComponent implements OnInit {
   public sueloX: number = 0;
   public sueloLeft: number = 0;
   public velEscenario = 1280/3;
-  public gameVel = 1;
+  public gameVel = 2;
 
 
   //Obstaculos
-  public tiempoHastaObstaculo = 1800;
-  public tiempoObstaculoMin = 400;
-  public tiempoObstaculoMax = 1500;
+  public tiempoHastaObstaculo = 500;
+  public tiempoObstaculoMin = 300;
+  public tiempoObstaculoMax = 800;
   public obstaculoPosY = 16;
   public obstaculos: any[] = [];
 
@@ -212,7 +213,7 @@ export class EscapeDinosaurioComponent implements OnInit {
   }
 
   registrarPuntaje(){
-    return this.firestore.addDataLogTS('puntaje-dinosaurio',{uidUser: this.uidUser, score: this.puntaje});
+    return this.firestore.addDataLogTS(this.documentPuntaje ,{uidUser: this.uidUser, score: this.puntaje});
   }
 
   public GanarPuntos(){

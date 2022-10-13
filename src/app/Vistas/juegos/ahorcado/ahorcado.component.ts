@@ -11,6 +11,8 @@ import { AuthService } from '../../../providers/auth.service';
 export class AhorcadoComponent implements OnInit {
 
   public uidUser: string | undefined;
+  public documentPuntaje: string = 'puntaje-ahorcado';
+
   public juegoIniciado = false;
   public palabra: string[] = [];
   public palabraAdivinada: string[] = [];
@@ -110,13 +112,10 @@ export class AhorcadoComponent implements OnInit {
     this.palabraAdivinada = [];
     this.cantFallas = 0;
     this.juegoIniciado = false;
-
-    console.log('Juego finalizado');
   }
 
   registrarPuntaje(){
-    return this.firestore.addDataLogTS('puntaje-ahorcado',{uidUser: this.uidUser, score: this.puntaje});
+    return this.firestore.addDataLogTS(this.documentPuntaje ,{uidUser: this.uidUser, score: this.puntaje});
   }
-
 }
 

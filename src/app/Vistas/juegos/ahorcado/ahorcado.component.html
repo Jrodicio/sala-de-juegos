@@ -28,3 +28,4 @@
     <app-letras (letrasEvento)="buscarLetra($event)" [letrasActivas]="juegoIniciado&&!nivelSuperado"></app-letras>
   </div>
 </div>
+<app-scoreboard [documentJuego]="documentPuntaje" style="position: absolute; z-index:100; width: 80%;"></app-scoreboard>

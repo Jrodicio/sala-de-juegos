@@ -33,7 +33,7 @@
 }
 
 .nivel-puntaje{
-  position: fixed;
+  position: absolute;
 }
 .texto-bicolor{
   font-size: 20px !important;

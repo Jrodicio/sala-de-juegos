@@ -1,0 +1,121 @@
+<div class="container">
+  <div class="section-title">
+    <h2>Encuesta de valoración</h2>
+    <p>Tenemos alguas preguntas para que puedas valorar nuestro trabajo realizado y conocer mejor a nuestros jugadores</p>
+  </div>
+
+  <form [formGroup]="encuestaForm" (ngSubmit)="cargarRespuesta()">
+
+    <div class="row">
+      <div class="col-lg-6">
+        <ul> <h5>Nombre</h5> <input type="text" class="rounded form-control" formControlName="nombre" [class.is-invalid]="encuestaForm.controls['nombre'].dirty && encuestaForm.controls['nombre'].invalid"></ul>
+      </div>
+      <div class="col-lg-6">
+        <ul> <h5>Apellido</h5> <input type="text" class="rounded form-control" formControlName="apellido" [class.is-invalid]="encuestaForm.controls['apellido'].dirty && encuestaForm.controls['apellido'].invalid"></ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <ul> <h5>Edad</h5> <input type="number" class="rounded form-control" formControlName="edad" [class.is-invalid]="encuestaForm.controls['edad'].dirty && encuestaForm.controls['edad'].invalid"></ul>
+      </div>
+      <div class="col-lg-6">
+        <ul> <h5>Teléfono</h5> <input type="tel" class="rounded form-control" formControlName="telefono" placeholder="1128889394" [class.is-invalid]="encuestaForm.controls['telefono'].dirty && encuestaForm.controls['telefono'].invalid"></ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <ul> <h5>Sexo</h5>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="sexo" id="inlineRadio1" value="Femenino" formControlName="sexo" [class.is-invalid]="encuestaForm.controls['sexo'].dirty && encuestaForm.controls['sexo'].invalid">
+            <label class="form-check-label" for="inlineRadio1">Femenino</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="sexo" id="inlineRadio2" value="Masculino" formControlName="sexo" [class.is-invalid]="encuestaForm.controls['sexo'].dirty && encuestaForm.controls['sexo'].invalid">
+            <label class="form-check-label" for="inlineRadio2">Masculino</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="sexo" id="inlineRadio3" value="Otro" formControlName="sexo" [class.is-invalid]="encuestaForm.controls['sexo'].dirty && encuestaForm.controls['sexo'].invalid">
+            <label class="form-check-label" for="inlineRadio3">Otro</label>
+          </div>
+        </ul>
+      </div>
+      <div class="col-lg-6">
+        <ul> <h5>País origen</h5>
+          <select type="text" class="rounded form-control" formControlName="nacionalidad" [class.is-invalid]="encuestaForm.controls['nacionalidad'].dirty && encuestaForm.controls['nacionalidad'].invalid">
+            <option value="Argentina">Argentina</option>
+            <option value="Bolivia">Bolivia</option>
+            <option value="Brasil">Brasil</option>
+            <option value="Chile">Chile</option>
+            <option value="Paraguay">Paraguay</option>
+            <option value="Uruguay">Uruguay</option>
+            <option value="Otro">Otro</option>
+          </select>
+          </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-6">
+        <ul>
+          <label for="diversionJuegos" class="form-label"><h5>¿Qué tanto te divertiste con los juegos?</h5></label>
+          <input type="range" class="form-range form-control" id="diversionJuegos" formControlName="nivelDiversion" [class.is-invalid]="encuestaForm.controls['nivelDiversion'].dirty && encuestaForm.controls['nivelDiversion'].invalid">
+        </ul>
+      </div>
+      <div class="col-lg-6">
+        <ul>
+          <h5>¿Qué juegos recomendarías?</h5>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox"name="Ahorcado" formControlName="recoAhorcado" [class.is-invalid]="encuestaForm.controls['recoAhorcado'].invalid">
+            <label class="form-check-label" for="Ahorcado">Ahorcado</label>
+          </div>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" name="Preguntados" formControlName="recoPreguntados" [class.is-invalid]="encuestaForm.controls['recoPreguntados'].invalid">
+            <label class="form-check-label" for="Preguntados">Preguntados</label>
+          </div>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" name="MayorMenor" formControlName="recoMayorMenor" [class.is-invalid]="encuestaForm.controls['recoMayorMenor'].invalid">
+            <label class="form-check-label" for="MayorMenor">Mayor o menor</label>
+          </div>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" name="EscapeDinosaurio" formControlName="recoEscapeDinosaurio" [class.is-invalid]="encuestaForm.controls['recoEscapeDinosaurio'].invalid">
+            <label class="form-check-label" for="EscapeDinosaurio">Escape: Dinosaurio</label>
+          </div>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" name="recoNinguno" formControlName="recoNinguno" [class.is-invalid]="encuestaForm.controls['recoNinguno'].invalid">
+            <label class="form-check-label" for="recoNinguno">Ninguno</label>
+          </div>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-1"></div>
+      <div class="col-lg-10">
+        <ul>
+          <h5>Dejanos tu comentario</h5>
+          <textarea class="rounded form-control" rows="4" placeholder="Que te parece la página" formControlName="comentario"></textarea>
+        </ul>
+      </div>
+      <div class="col-lg-1"></div>
+    </div>
+
+    <div class="row last-row">
+        <button class="btn btn-success" type="submit" [disabled]="!encuestaForm.valid">Aceptar</button>
+    </div>
+    <div class="row last-row">
+      <button class="btn btn-danger" type="button" [disabled]="encuestaForm.disabled" (click)="resetear()">Resetear</button>
+    </div>
+  </form>
+
+  <div class="toast" [ngClass]="toastClass">
+    <div class="toast-header">
+      Valoración registrada
+    </div>
+    <div class="toast-body">
+      ¡Muchas gracias por sus comentarios!
+    </div>
+  </div>
+
+</div>

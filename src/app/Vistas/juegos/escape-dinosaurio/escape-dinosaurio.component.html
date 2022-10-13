@@ -1,3 +1,4 @@
+<app-scoreboard [documentJuego]="documentPuntaje" style="position: absolute; z-index:100; width: 80%;"></app-scoreboard>
 <div class="contenedor" (mousedown)="Saltador()">
 
   <div class="mensaje-juego" [hidden]="juegoIniciado">
@@ -20,3 +21,4 @@
     <div class="cactus" [style]="'left:'+obstaculo.posX+'px'"></div>
   </div>
 </div>
+

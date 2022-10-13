@@ -11,7 +11,7 @@ import { Preguntas } from '../../../Entidades/preguntas';
 })
 export class PreguntadosComponent implements OnInit {
 
-  public tituloPage = 'Preguntados';
+  public documentPuntaje: string = 'puntaje-preguntados';
 
   public uidUser: string | undefined;
 
@@ -113,6 +113,6 @@ export class PreguntadosComponent implements OnInit {
   }
 
   registrarPuntaje(){
-    return this.firestore.addDataLogTS('puntaje-preguntados',{uidUser: this.uidUser, score: this.puntaje});
+    return this.firestore.addDataLogTS(this.documentPuntaje ,{uidUser: this.uidUser, score: this.puntaje});
   }
 }
